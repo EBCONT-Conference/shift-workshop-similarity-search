@@ -20,6 +20,3 @@ Please complete the following steps before the workshop:
    ```bash
    docker compose up
     ``` 
-5. **Download Sample Data**: Obtain sample data from this [link](https://www.kaggle.com/datasets/kunalgupta2616/dog-vs-cat-images-data?resource=download) or other relevant sources.
-
-
