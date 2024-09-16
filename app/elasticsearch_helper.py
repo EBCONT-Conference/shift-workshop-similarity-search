@@ -8,9 +8,12 @@ def save_image(image_id, embedding, image_data, ):
     :param embedding: The embedding vector for the image
     :param image_data: The image data (can be a URL, base64, or any other format you are using)
     """
-    # TODO: Implement the logic to save the image and its embedding in Elasticsearch
-    #pass
-    return ""
+    document = {
+        "vector": embedding,
+        "image_data": image_data
+    }
+    
+    elasticsearch_client.index(index=index_name_image, id=image_id, document=document)
     
 
 def search_similar_items(query_embedding, index_name, top_k=15, min_score=0.8):
@@ -23,9 +26,17 @@ def search_similar_items(query_embedding, index_name, top_k=15, min_score=0.8):
     :param min_score: Minimum score for filtering results (default: 0.8)
     :return: List of search results
     """
-    # TODO: Implement the search logic using Elasticsearch's vector search capabilities
-    #pass
-    return "";
+    query = {
+        "knn": {
+            "field": "vector",
+            "query_vector": query_embedding,
+            "k": top_k
+        }
+    }
+
+    response = elasticsearch_client.search(index=index_name, query=query, size=top_k, min_score=min_score)
+    
+    return get_relevant_image_data(response)
 
 def get_all(offset, per_page, selected_index):
     #function to get all items of an index
