@@ -58,3 +58,5 @@ Imagine if you could build a search engine where you upload a picture to find si
 - **Christoph Eder**
 - **Patrick Iszovits**
 - **Dino Duranovic**
+
+If you have any questions -> christoph.eder@ebcont.com
