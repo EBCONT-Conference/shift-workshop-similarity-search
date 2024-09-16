@@ -21,7 +21,7 @@ def similarity():
             query_embedding = get_image_embedding(image)
             
             # Search in elastic cluster for similar items
-            search_results = search_similar_items(query_embedding, index_name_image, top_k=15, min_score=0.012)
+            search_results = search_similar_items(query_embedding, index_name_image, top_k=15, min_score=0.8)
 
             # Convert the uploaded image into a data URI in Base64 format 
             query_image_uri = convert_image_to_data_uri(image)
