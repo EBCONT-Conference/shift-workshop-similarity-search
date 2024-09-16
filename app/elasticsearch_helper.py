@@ -10,12 +10,7 @@ def save_image(image_id, embedding, image_data, ):
     """
     # TODO: Implement the logic to save the image and its embedding in Elasticsearch
     #pass
-    document = {
-        "vector": embedding,
-        "image_data": image_data
-    }
-    
-    elasticsearch_client.index(index=index_name_image, id=image_id, document=document)
+    return ""
     
 
 def search_similar_items(query_embedding, index_name, top_k=15, min_score=0.8):
