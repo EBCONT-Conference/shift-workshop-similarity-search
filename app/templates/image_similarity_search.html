@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search for Similar Images</h1>
+<form action="{{ url_for('image_similarity_routes.similarity') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Search">
+</form>
+
+{% if query_image %}
+    <h2>Query Image</h2>
+    <div class="image-container">
+        <img src="{{ query_image }}" alt="Query Image" style="width: 200px; height: 200px;">
+    </div>
+{% endif %}
+
+{% if query_results %}
+    <h2>Search Results</h2>
+    <div>
+        {% for result in query_results %}
+            <div class="image-container">
+                <p>{{ result[0] }} (Similarity: {{ result[1] }})</p>
+                <img src="{{ result[2] }}" alt="{{ result[0] }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

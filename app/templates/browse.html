@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Browse Uploaded Images</h1>
+
+<!-- Form to delete all images -->
+<form action="{{ url_for('browse_routes.delete_all_images') }}" method="post">
+    <input type="hidden" name="index_name" value="{{ index }}">
+    <input type="submit" value="Delete All Images">
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<div>
+    {% for image_id, image_uri, product_description, product_name in images %}
+        <div class="image-container">
+            <p>ID: {{ image_id }}</p>
+            {% if product_name %}
+                <p>{{ product_name }}</p>
+            {% endif %}
+            {% if product_description %}
+                <p>{{ product_description | safe }}</p>
+            {% endif %}
+            <img src="{{ image_uri }}" alt="{{ image_id }}">
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+    {% if page is defined and page is not none %}
+        {% if page > 1 %}
+            <a href="{{ url_for('browse_routes.browse', page=page-1, index_name=index) }}">Previous</a>
+        {% endif %}
+        <span>Page {{ page }} of {{ total_pages }}</span>
+        {% if page < total_pages %}
+            <a href="{{ url_for('browse_routes.browse', page=page+1, index_name=index) }}">Next</a>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

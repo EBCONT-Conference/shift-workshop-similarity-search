@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search by Text</h1>
+<form action="{{ url_for('text_search_routes.text_search') }}" method="post">
+    <input type="text" name="query" placeholder="Enter search text">
+    <input type="submit" value="Search">
+</form>
+
+{% if query_results %}
+    <h2>Search query</h2>
+    <p>{{ query_text }}</p>
+    <h2>Search Results</h2>
+    <div>
+        {% for result in query_results %}
+            <div class="image-container">
+                <p>Similarity: {{ result[1] }}</p>
+                <img src="{{ result[2] }}" alt="{{ result[3] }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

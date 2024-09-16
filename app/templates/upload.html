@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if webshop %}
+<h1>Upload CSV and do text embedding</h1>
+<form action="{{ url_for('text_upload_routes.upload') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="files" multiple accept=".csv">
+    <input type="submit" value="Upload CSV">
+</form>
+{% else %}
+<h1>Upload Images and do embedding</h1>
+<form action="{{ url_for('image_upload_routes.upload') }}" method="post" enctype="multipart/form-data">
+    <input type="file" name="files" multiple>
+    <input type="submit" value="Upload Images">
+</form>
+{% endif %}
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+{% endblock %}

@@ -10,7 +10,7 @@ Please complete the following steps before the workshop:
 1. **Install**: Ensure you have **Docker** and **Git** installed.
 2. **Clone Repository**: Open your terminal and run:  
    ```bash
-   git clone <repository-link>
+   git clone https://github.com/EBCONT-Conference/shift-workshop-similarity-search.git
     ``` 
 3. **Navigate to Directory**:
    ```bash
