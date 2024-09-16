@@ -6,15 +6,10 @@ model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
 
 def get_image_embedding(image):
-    """
-    Function to generate an embedding vector for a given image using a pre-trained CLIPModel.
-    
-    :param image: The input image to generate an embedding for
-    :return: A list representing the image embedding
-    """
-    #pass
-    # TODO: Implement the logic to preprocess the image and generate its embedding
-    return "";
+    inputs = processor(images=image, return_tensors="pt")  # Preprocess the image and return PyTorch tensors.
+    with torch.no_grad():  # Disable gradient tracking for faster computation and to save memory.
+        embedding = model.get_image_features(**inputs)  # Extract image features from the model.
+    return embedding.numpy().flatten().tolist()  # Convert the tensor to a numpy array, flatten it, and return it as a list.
 
 
 def get_text_embedding(text):   
